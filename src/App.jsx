@@ -6,6 +6,7 @@ import Projects from './pages/Projects';
 import About from './components/About';
 import Works from './pages/Works';
 import Cursor from './components/Cursor';
+import { Analytics } from "@vercel/analytics/react"
 import { gsap } from 'gsap';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/works" element={<Works />} />
         </Routes>
       </div>
+      <Analytics />
     </div>
   );
 }
