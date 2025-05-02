@@ -18,7 +18,7 @@ function App() {
       { opacity: 0 },
       {
         opacity: 1,
-        duration: 5,
+        duration: 3,
         ease: 'power2.out'
       }
     );

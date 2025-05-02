@@ -10,7 +10,7 @@ export default function Works() {
   const marqueeRef = useRef(null);
 
   useEffect(() => {
-    document.title = "ODA.exe – PROJECTS";
+    document.title = "ODA.exe – WORKS";
 
     const marqueeElement = marqueeRef.current;
     gsap.to(marqueeElement, {
@@ -32,7 +32,7 @@ export default function Works() {
           style={{ width: "200%" }}
         >
           {Array(20).fill().map((_, i) => (
-            <span key={i} className="inline-flex items-center text-lg">
+            <span key={i} className="inline-flex mb-5 items-center text-lg">
               IMPERFECTION IS A STATEMENT <FaStar className="mx-1" />
             </span>
           ))}
