@@ -32,7 +32,7 @@ export default function Works() {
           style={{ width: "200%" }}
         >
           {Array(20).fill().map((_, i) => (
-            <span key={i} className="inline-flex mb-5 items-center text-lg">
+            <span key={i} className="inline-flex mb-9 items-center text-lg">
               IMPERFECTION IS A STATEMENT <FaStar className="mx-1" />
             </span>
           ))}
