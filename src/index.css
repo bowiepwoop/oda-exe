@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@font-face {
+  font-family: 'Cactus Jack';
+  src: url('/public/fonts/CactusJack.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; 
+}
+
+@font-face {
+  font-family: 'Starborn';
+  src: url('/public/fonts/Starborn.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; 
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root, .page {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Hide scrollbar thumb in WebKit browsers */
+.custom-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* Optional: Keep track visible (just red line for aesthetics) */
+.custom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Hide scrollbar thumb in Firefox */
+.custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
