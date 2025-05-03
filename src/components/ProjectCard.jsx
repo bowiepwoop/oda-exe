@@ -150,8 +150,10 @@ const ProjectCard = () => {
 
       if (distSq < threshold) {
         const angle = Math.atan2(dy, dx);
-        const offsetX = Math.cos(angle) * -80 * (1 - distSq / threshold);
-        const offsetY = Math.sin(angle) * -80 * (1 - distSq / threshold);
+        // Reduce the animation intensity on smaller screens
+        const offsetMultiplier = window.innerWidth < 768 ? -40 : -80;
+        const offsetX = Math.cos(angle) * offsetMultiplier * (1 - distSq / threshold);
+        const offsetY = Math.sin(angle) * offsetMultiplier * (1 - distSq / threshold);
 
         animationRefs.current[i] = gsap.to(letter, {
           x: offsetX,
@@ -223,14 +225,14 @@ const ProjectCard = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full flex flex-col items-center justify-center px-4 text-red-700 font-medium bg-white overflow-hidden"
+      className="relative w-full flex flex-col items-center justify-center px-2 sm:px-4 text-red-700 font-medium bg-white"
     >
       {/* Arrows */}
-      <div className="absolute inset-0 flex items-center justify-between px-10 pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-between px-2 sm:px-4 md:px-6 lg:px-10 pointer-events-none">
         <div
           ref={leftArrowRef}
           onClick={() => handleSlide('left')}
-          className="text-9xl cursor-pointer pointer-events-auto text-red-700"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl cursor-pointer pointer-events-auto text-red-700"
           onMouseEnter={() => gsap.to("#cursor", { scale: 6, duration: 0.3 })}
           onMouseLeave={() => gsap.to("#cursor", { scale: 1, duration: 0.3 })}
         >
@@ -239,7 +241,7 @@ const ProjectCard = () => {
         <div
           ref={rightArrowRef}
           onClick={() => handleSlide('right')}
-          className="text-9xl cursor-pointer pointer-events-auto text-red-700"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl cursor-pointer pointer-events-auto text-red-700"
           onMouseEnter={() => gsap.to("#cursor", { scale: 6, duration: 0.3 })}
           onMouseLeave={() => gsap.to("#cursor", { scale: 1, duration: 0.3 })}
         >
@@ -248,7 +250,7 @@ const ProjectCard = () => {
       </div>
 
       {/* Content */}
-      <h1 className="text-7xl font-extrabold font-body tracking-wider text-red-700 mb-6 py-10 px-10 whitespace-nowrap overflow-hidden cursor-default">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold font-body tracking-wider text-red-700 mb-2 sm:mb-3 md:mb-4 py-3 sm:py-4 md:py-5 px-2 sm:px-4 md:px-6 whitespace-nowrap overflow-hidden cursor-default">
           {title.split('').map((char, i) => (
             <span
               key={i}
@@ -259,8 +261,8 @@ const ProjectCard = () => {
             </span>
           ))}
       </h1>
-      <div ref={contentRef} className="max-w-3xl w-full py-10 px-20 text-center">
-        <p className="text-lg font-body leading-relaxed max-w-2xl mx-auto text-justify text-left mb-8 cursor-default">
+      <div ref={contentRef} className="w-full max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl py-2 sm:py-3 md:py-4 px-4 sm:px-6 md:px-8 text-center">
+        <p className="text-xs sm:text-sm md:text-base font-body leading-relaxed mx-auto text-justify mb-3 sm:mb-4 md:mb-5 cursor-default line-clamp-6 sm:line-clamp-none">
           {description.split('').map((char, i) => (
             <span
               key={`desc-${i}`}
@@ -277,7 +279,7 @@ const ProjectCard = () => {
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-6 py-3 mt-8 relative text-[#DB0000] font-medium font-body border-2 border-[#DB0000] transition-colors duration-300"
+          className="inline-block px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 mt-2 sm:mt-3 md:mt-4 relative text-[#DB0000] font-medium font-body border-2 border-[#DB0000] transition-colors duration-300"
           onMouseEnter={() => gsap.to("#cursor", { scale: 2.5, duration: 0.3 })}
           onMouseLeave={() => gsap.to("#cursor", { scale: 1, duration: 0.3 })}
         >

@@ -20,10 +20,10 @@ export default function Landing() {
   return (
     <div className="bg-white text-[#DB0000] min-h-screen flex flex-col font-sans">
       {/* Marquee */}
-      <div className="bg-[#DB0000] text-white py-5 overflow-hidden whitespace-nowrap">
-        <div ref={marqueeRef} className="inline-block" style={{ width: "200%" }}>
+      <div className="bg-[#DB0000] text-white py-3 overflow-hidden whitespace-nowrap">
+        <div ref={marqueeRef} className="inline-block w-[200%]">
           {Array(20).fill().map((_, i) => (
-            <span key={i} className="inline-flex items-center text-lg">
+            <span key={i} className="inline-flex items-center text-sm sm:text-base md:text-lg mx-2">
               IMPERFECTION IS A STATEMENT <FaStar className="mx-2" />
             </span>
           ))}
@@ -31,39 +31,38 @@ export default function Landing() {
       </div>
 
       {/* Header Section */}
-      <header className="border-b-2 border-[#DB0000]">
+      <header className="border-b-2 border-[#DB0000] px-4 py-4">
         <Link
           to="/"
           onMouseEnter={() => gsap.to("#cursor", { scale: 5, duration: 0.3 })}
           onMouseLeave={() => gsap.to("#cursor", { scale: 1, duration: 0.3 })}
-          className="flex justify-between items-center w-full font-black text-9xl"
+          className="flex flex-col sm:flex-row justify-between items-center w-full font-black text-4xl sm:text-6xl md:text-8xl lg:text-9xl text-center sm:text-left"
         >
-          <span className="w-1/3 text-left font-body">ODA</span>
-          <span className="w-1/3 text-center font-body">.</span>
-          <span className="w-1/3 text-right font-body">EXE</span>
+          <span className="sm:w-1/3 font-body">ODA</span>
+          <span className="sm:w-1/3 font-body">.</span>
+          <span className="sm:w-1/3 font-body">EXE</span>
         </Link>
       </header>
 
       {/* Navigation */}
-      <Navbar /> {/* Navbar with justified links */}
+      <Navbar />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex justify-center items-center">
-        <main className="w-full h-full flex justify-center items-center overflow-hidden">
-          <img 
+      <div className="flex-1 flex justify-center items-center px-4">
+        <main className="w-full max-w-[90%] sm:max-w-[80%] md:max-w-[60%] flex justify-center items-center overflow-hidden">
+          <img
             onMouseEnter={() => gsap.to("#cursor", { scale: 5, duration: 0.3 })}
             onMouseLeave={() => gsap.to("#cursor", { scale: 1, duration: 0.3 })}
             src="/img/welcome.gif"
             alt="welcome"
-            width="687"
-            height="236"
+            className="w-full h-auto max-w-full"
           />
         </main>
       </div>
 
       {/* Footer */}
       <footer
-        className="border-t-2 border-[#DB0000] py-5 px-5 font-body text-center text-lg"
+        className="border-t-2 border-[#DB0000] py-5 px-5 font-body text-center text-base sm:text-lg"
         onMouseEnter={() => gsap.to("#cursor", { scale: 1.5, duration: 0.3 })}
         onMouseLeave={() => gsap.to("#cursor", { scale: 1, duration: 0.3 })}
       >

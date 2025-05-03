@@ -4,11 +4,10 @@ import { gsap } from 'gsap';
 const Welcome = () => {
   const containerRef = useRef(null);
   const lettersRef = useRef([]);
-  const animationRefs = useRef([]); // Store animation instances
+  const animationRefs = useRef([]);
   const lastMousePos = useRef({ x: 0, y: 0 });
   const rafId = useRef(null);
 
-  // Throttled mouse move handler using requestAnimationFrame
   const handleMouseMove = useCallback((e) => {
     lastMousePos.current = { x: e.clientX, y: e.clientY };
     
@@ -20,11 +19,10 @@ const Welcome = () => {
     }
   }, []);
 
-  // Optimized letter position update
   const updateLetters = useCallback(() => {
     const { x: mouseX, y: mouseY } = lastMousePos.current;
     const threshold = 100;
-    const thresholdSq = threshold * threshold; // Using squared distance to avoid Math.sqrt
+    const thresholdSq = threshold * threshold;
 
     lettersRef.current.forEach((letter, index) => {
       if (!letter) return;
@@ -34,14 +32,13 @@ const Welcome = () => {
       const dy = mouseY - (rect.top + rect.height / 2);
       const distanceSq = dx * dx + dy * dy;
 
-      // Kill any ongoing animation for this letter
       if (animationRefs.current[index]) {
         animationRefs.current[index].kill();
       }
 
       if (distanceSq < thresholdSq) {
         const angle = Math.atan2(dy, dx);
-        const x = Math.cos(angle) * -80 * (1 - distanceSq / thresholdSq); // Scale effect by distance
+        const x = Math.cos(angle) * -80 * (1 - distanceSq / thresholdSq);
         const y = Math.sin(angle) * -80 * (1 - distanceSq / thresholdSq);
         
         animationRefs.current[index] = gsap.to(letter, {
@@ -70,7 +67,6 @@ const Welcome = () => {
       if (rafId.current) {
         cancelAnimationFrame(rafId.current);
       }
-      // Clean up all animations
       animationRefs.current.forEach(anim => anim && anim.kill());
     };
   }, [handleMouseMove]);
@@ -79,16 +75,16 @@ const Welcome = () => {
 
   return (
     <div 
-      ref={containerRef} 
-      className="flex justify-center items-center h-full bg-white p-11 px-4 cursor-default"
+      ref={containerRef}
+      className="w-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10 py-8 sm:py-12 md:py-16 lg:py-20"
     >
-      <div className="max-w-3xl text-justify mx-auto">
-        <p className="text-xl font-bold text-[#DB0000] leading-relaxed select-none">
+      <div className="w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto">
+        <p className="text-xs sm:text-sm md:text-base lg:text-lg font-body leading-relaxed sm:leading-loose text-justify text-center cursor-default">
           {text.split('').map((char, index) => (
             <span
               key={index}
               ref={(el) => (lettersRef.current[index] = el)}
-              className="inline-block will-change-transform" // Hint for browser optimization
+              className="inline-block will-change-transform"
             >
               {char === ' ' ? '\u00A0' : char}
             </span>

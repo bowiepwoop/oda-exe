@@ -6,7 +6,7 @@ import Welcome from '../components/Welcome';
 import Contact from '../components/Contact';
 import Navbar from './Navbar';
 
-export default function Landing() {
+export default function About() {
   const marqueeRef = useRef(null);
 
   useEffect(() => {
@@ -19,20 +19,19 @@ export default function Landing() {
       duration: 30,
       ease: "linear"
     });
-    // Cursor initialization is in a separate file
   }, []);
 
   return (
     <div className="bg-white text-[#DB0000] min-h-screen flex flex-col font-sans">
       {/* Marquee */}
-      <div className="bg-[#DB0000] text-white py-5 overflow-hidden whitespace-nowrap">
+      <div className="bg-[#DB0000] text-white py-3 sm:py-4 md:py-5 overflow-hidden whitespace-nowrap">
         <div
           ref={marqueeRef}
           className="inline-block"
           style={{ width: "200%" }}
         >
           {Array(20).fill().map((_, i) => (
-            <span key={i} className="inline-flex items-center text-lg">
+            <span key={i} className="inline-flex items-center text-xs sm:text-sm md:text-base lg:text-lg mx-1 sm:mx-2">
               IMPERFECTION IS A STATEMENT <FaStar className="mx-1" />
             </span>
           ))}
@@ -40,12 +39,12 @@ export default function Landing() {
       </div>
 
       {/* Header Section */}
-      <header className="border-b-2 border-[#DB0000]">
+      <header className="border-b-2 border-[#DB0000] px-4 py-4 sm:py-6 md:py-8">
         <Link
           to="/"
           onMouseEnter={() => gsap.to("#cursor", { scale: 5, duration: 0.3 })}
           onMouseLeave={() => gsap.to("#cursor", { scale: 1, duration: 0.3 })}
-          className="flex justify-between items-center w-full font-extrabold text-9xl"
+          className="flex justify-between items-center w-full font-extrabold text-5xl sm:text-7xl md:text-8xl lg:text-9xl"
         >
           <span className="w-1/3 text-left font-body">ODA</span>
           <span className="w-1/3 text-center font-body">.</span>
@@ -57,24 +56,23 @@ export default function Landing() {
       <Navbar />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex justify-center items-center"> 
-        <main className="w-full h-full justify-center items-center overflow-hidden">
-          <Welcome />
-        </main>
-      </div>
+      <main className="flex-1 overflow-x-hidden px-4 py-4 sm:py-6 md:py-8">
+        <Welcome />
+      </main>
 
-      <Contact />
+      {/* Contact */}
+      <div className="flex-shrink-0">
+        <Contact />
+      </div>
 
       {/* Footer */}
-      <div className=''>
-        <footer 
-          className="border-t-2 border-[#DB0000] py-5 px-5 font-body text-center text-lg"
-          onMouseEnter={() => gsap.to("#cursor", { scale: 1.5, duration: 0.3 })}
-          onMouseLeave={() => gsap.to("#cursor", { scale: 1, duration: 0.3 })}
-        >
-          © 2025
-        </footer>
-      </div>
+      <footer 
+        className="border-t-2 border-[#DB0000] py-4 px-4 font-body text-center text-xs sm:text-sm md:text-base"
+        onMouseEnter={() => gsap.to("#cursor", { scale: 1.5, duration: 0.3 })}
+        onMouseLeave={() => gsap.to("#cursor", { scale: 1, duration: 0.3 })}
+      >
+        © 2025
+      </footer>
     </div>
   );
 }
