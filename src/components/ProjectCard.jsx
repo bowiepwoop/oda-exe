@@ -43,7 +43,6 @@ const ProjectCard = () => {
   const animationTimeline = useRef(null);
   const buttonRef = useRef(null);
 
-  // Button hover effect
   const setupButton = useCallback(() => {
     const button = buttonRef.current;
     if (!button) return;
@@ -92,7 +91,6 @@ const ProjectCard = () => {
     };
   }, []);
 
-  // Initialize button and arrow hover
   useEffect(() => {
     setupButton();
 
@@ -150,7 +148,7 @@ const ProjectCard = () => {
 
       if (distSq < threshold) {
         const angle = Math.atan2(dy, dx);
-        // Reduce the animation intensity on smaller screens
+        
         const offsetMultiplier = window.innerWidth < 768 ? -40 : -80;
         const offsetX = Math.cos(angle) * offsetMultiplier * (1 - distSq / threshold);
         const offsetY = Math.sin(angle) * offsetMultiplier * (1 - distSq / threshold);
@@ -225,44 +223,42 @@ const ProjectCard = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full flex flex-col items-center justify-center px-2 sm:px-4 text-red-700 font-medium bg-white"
+      className="relative w-full flex flex-col items-center justify-center px-4 sm:px-6 text-red-700 font-medium bg-white min-h-[60vh]"
     >
       {/* Arrows */}
-      <div className="absolute inset-0 flex items-center justify-between px-2 sm:px-4 md:px-6 lg:px-10 pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-10 pointer-events-none">
         <div
           ref={leftArrowRef}
           onClick={() => handleSlide('left')}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl cursor-pointer pointer-events-auto text-red-700"
-          onMouseEnter={() => gsap.to("#cursor", { scale: 6, duration: 0.3 })}
-          onMouseLeave={() => gsap.to("#cursor", { scale: 1, duration: 0.3 })}
+          className="text-4xl sm:text-5xl md:text-6xl cursor-pointer pointer-events-auto text-red-700"
         >
           <RiArrowLeftWideFill />
         </div>
         <div
           ref={rightArrowRef}
           onClick={() => handleSlide('right')}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl cursor-pointer pointer-events-auto text-red-700"
-          onMouseEnter={() => gsap.to("#cursor", { scale: 6, duration: 0.3 })}
-          onMouseLeave={() => gsap.to("#cursor", { scale: 1, duration: 0.3 })}
+          className="text-4xl sm:text-5xl md:text-6xl cursor-pointer pointer-events-auto text-red-700"
         >
           <RiArrowRightWideFill />
         </div>
       </div>
 
-      {/* Content */}
-      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold font-body tracking-wider text-red-700 mb-2 sm:mb-3 md:mb-4 py-3 sm:py-4 md:py-5 px-2 sm:px-4 md:px-6 whitespace-nowrap overflow-hidden cursor-default">
-          {title.split('').map((char, i) => (
-            <span
-              key={i}
-              ref={(el) => (lettersRef.current[i] = el)}
-              className="inline-block will-change-transform hover:text-red-800"
-            >
-              {char === ' ' ? '\u00A0' : char}
-            </span>
-          ))}
+      {/* Title - Responsive sizing */}
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold font-body tracking-wider text-red-700 mb-6 py-6 px-4 whitespace-nowrap overflow-hidden cursor-default">
+        {title.split('').map((char, i) => (
+          <span
+            key={i}
+            ref={(el) => (lettersRef.current[i] = el)}
+            className="inline-block will-change-transform hover:text-red-800"
+          >
+            {char === ' ' ? '\u00A0' : char}
+          </span>
+        ))}
       </h1>
-      <div ref={contentRef} className="w-full max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl py-2 sm:py-3 md:py-4 px-4 sm:px-6 md:px-8 text-center">
-        <p className="text-xs sm:text-sm md:text-base font-body leading-relaxed mx-auto text-justify mb-3 sm:mb-4 md:mb-5 cursor-default line-clamp-6 sm:line-clamp-none">
+
+      {/* Description - Centered */}
+      <div ref={contentRef} className="w-full max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-3xl py-6 px-6 text-center">
+        <p className="text-sm sm:text-base md:text-lg font-body leading-relaxed text-center mb-8 cursor-default">
           {description.split('').map((char, i) => (
             <span
               key={`desc-${i}`}
@@ -274,14 +270,13 @@ const ProjectCard = () => {
           ))}
         </p>
 
+        {/* Button */}
         <a
           ref={buttonRef}
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 mt-2 sm:mt-3 md:mt-4 relative text-[#DB0000] font-medium font-body border-2 border-[#DB0000] transition-colors duration-300"
-          onMouseEnter={() => gsap.to("#cursor", { scale: 2.5, duration: 0.3 })}
-          onMouseLeave={() => gsap.to("#cursor", { scale: 1, duration: 0.3 })}
+          className="inline-block px-6 py-3 mt-4 relative text-[#DB0000] font-medium font-body border-2 border-[#DB0000] transition-colors duration-300 text-sm sm:text-base"
         >
           <span>View Here</span>
         </a>
