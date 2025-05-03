@@ -1,56 +1,18 @@
-import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { FaStar } from 'react-icons/fa';
-import { gsap } from 'gsap';
 import Welcome from '../components/Welcome';
 import Contact from '../components/Contact';
 import Navbar from './Navbar';
+import Hero from './Hero';
+import Footer from './Footer';
+import Marquee from './Marquee';
 
 export default function About() {
-  const marqueeRef = useRef(null);
-
-  useEffect(() => {
-    document.title = "ODA.exe – ABOUT";
-
-    const marqueeElement = marqueeRef.current;
-    gsap.to(marqueeElement, {
-      xPercent: -50,
-      repeat: -1,
-      duration: 30,
-      ease: "linear"
-    });
-  }, []);
-
   return (
     <div className="bg-white text-[#DB0000] min-h-screen flex flex-col font-sans">
       {/* Marquee */}
-      <div className="bg-[#DB0000] text-white py-3 sm:py-4 md:py-5 overflow-hidden whitespace-nowrap">
-        <div
-          ref={marqueeRef}
-          className="inline-block"
-          style={{ width: "200%" }}
-        >
-          {Array(20).fill().map((_, i) => (
-            <span key={i} className="inline-flex items-center text-xs sm:text-sm md:text-base lg:text-lg mx-1 sm:mx-2">
-              IMPERFECTION IS A STATEMENT <FaStar className="mx-1" />
-            </span>
-          ))}
-        </div>
-      </div>
+      <Marquee />
 
       {/* Header Section */}
-      <header className="border-b-2 border-[#DB0000] px-4 py-4 sm:py-6 md:py-8">
-        <Link
-          to="/"
-          onMouseEnter={() => gsap.to("#cursor", { scale: 5, duration: 0.3 })}
-          onMouseLeave={() => gsap.to("#cursor", { scale: 1, duration: 0.3 })}
-          className="flex justify-between items-center w-full font-extrabold text-5xl sm:text-7xl md:text-8xl lg:text-9xl"
-        >
-          <span className="w-1/3 text-left font-body">ODA</span>
-          <span className="w-1/3 text-center font-body">.</span>
-          <span className="w-1/3 text-right font-body">EXE</span>
-        </Link>
-      </header>
+      <Hero />
 
       {/* Navigation */}
       <Navbar />
@@ -66,13 +28,7 @@ export default function About() {
       </div>
 
       {/* Footer */}
-      <footer 
-        className="border-t-2 border-[#DB0000] py-4 px-4 font-body text-center text-xs sm:text-sm md:text-base"
-        onMouseEnter={() => gsap.to("#cursor", { scale: 1.5, duration: 0.3 })}
-        onMouseLeave={() => gsap.to("#cursor", { scale: 1, duration: 0.3 })}
-      >
-        © 2025
-      </footer>
+      <Footer />
     </div>
   );
 }
