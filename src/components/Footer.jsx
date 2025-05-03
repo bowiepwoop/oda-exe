@@ -1,4 +1,3 @@
-// src/components/Footer.jsx
 import { gsap } from 'gsap';
 
 const Footer = () => {

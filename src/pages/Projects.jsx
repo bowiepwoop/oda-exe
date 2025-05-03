@@ -9,26 +9,24 @@ export default function Projects() {
   return (
     <div className="bg-[#FEFEFF] text-[#DB0000] flex flex-col font-sans min-h-screen">
       {/* Marquee */}
-      <Marquee />
+      <Marquee className="flex-shrink-0" />
 
       {/* Hero */}
-      <Hero />
+      <Hero className="flex-shrink-0" />
 
       {/* Navbar */}
-      <Navbar />
+      <Navbar className="flex-shrink-0" />
 
-      {/* Main Content */}
-      <main className="flex-1 overflow-x-hidden px-4 py-6">
+      {/* Main Content - Allow scrolling */}
+      <main className="flex-1 overflow-y-auto px-4 py-6">
         <ProjectCard />
       </main>
 
-      {/* Contact */}
+      {/* Footer Section - Stays at bottom */}
       <div className="flex-shrink-0">
         <Contact />
+        <Footer />
       </div>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }

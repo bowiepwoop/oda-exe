@@ -57,7 +57,7 @@ const WorkCard = () => {
   };
 
   return (
-    <div className="w-full px-2 -mt-11 sm:py-8 mt-8 px-8">
+    <div className="w-full px-2 sm:py-8 ">
       {/* Scrollable vertically on mobile only */}
       <div className="block sm:hidden max-h-[90vh] overflow-y-auto pb-16">
         <div className="grid grid-cols-3 gap-1">
